@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+import '../../constant/color/colors.dart';
+
+class MidText extends StatelessWidget {
+  MidText({super.key, required this.body, this.color = AppColors.textColor});
+ final String body;
+ final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          body,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: color!,
+            fontSize: 20,
+            fontFamily: 'Somar',
+            fontWeight: FontWeight.w700,
+            height: 0,
+          ),
+        ),
+      ],
+    );
+  }
+}
