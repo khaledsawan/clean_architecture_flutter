@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:mime/mime.dart';
 import 'package:formz/formz.dart';
 
 enum PasswordValidationError { empty, invalid, short }
@@ -17,7 +19,7 @@ class Password extends FormzInput<String, PasswordValidationError> {
 enum EmailValidationError { empty, invalid }
 
 class Email extends FormzInput<String, EmailValidationError> {
-  const Email.pure([super.value = '']) : super.pure();
+  const Email.pure() : super.pure('');
   const Email.dirty([super.value = '']) : super.dirty();
 
   static final _emailRegex = RegExp(
@@ -29,5 +31,26 @@ class Email extends FormzInput<String, EmailValidationError> {
     return _emailRegex.hasMatch(value ?? '')
         ? null
         : EmailValidationError.invalid;
+  }
+}
+
+enum FileImageValidationError { empty, invalid }
+
+class FileImage extends FormzInput<File?, FileImageValidationError> {
+  const FileImage.pure() : super.pure(null);
+  const FileImage.dirty([File? value]) : super.dirty(value);
+
+  @override
+  FileImageValidationError? validator(File? value) {
+    if (value == null || value.path.isEmpty) {
+      return FileImageValidationError.empty;
+    }
+
+    final mimeType = lookupMimeType(value.path);
+    if (mimeType != null && mimeType.startsWith('image')) {
+      return null;
+    } else {
+      return FileImageValidationError.invalid;
+    }
   }
 }

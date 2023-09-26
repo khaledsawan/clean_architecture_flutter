@@ -1,4 +1,4 @@
-import '../model/login_form.dart';
+import '../../../common_model/login_form.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
@@ -8,8 +8,7 @@ class LoginState extends Equatable {
   final FormzSubmissionStatus status;
   final bool isValid;
 
-  const LoginState({
-    this.email = const Email.pure(),
+  const LoginState({this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.status = FormzSubmissionStatus.initial,
     this.isValid = false,

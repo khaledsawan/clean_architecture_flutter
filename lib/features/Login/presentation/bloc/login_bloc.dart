@@ -6,7 +6,7 @@ import 'package:formz/formz.dart';
 import '../../../../data/models/request/login/login_request.dart';
 import '../../../../di.dart';
 import '../../../../services/login_service.dart';
-import '../model/login_form.dart';
+import '../../../common_model/login_form.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 
@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final email = Email.dirty(event.email);
     emit(
       state.copyWith(
-        email: email.isValid ? email : Email.pure(event.email),
+        email: email.isValid ? email : Email.dirty(event.email),
         isValid: Formz.validate([email, state.password]),
       ),
     );
