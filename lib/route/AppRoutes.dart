@@ -1,4 +1,4 @@
-import 'package:clean_architecture_flutter/features/signup/page/sign_up_page.dart';
+import 'package:clean_architecture_flutter/features/signup/presentation/page/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';

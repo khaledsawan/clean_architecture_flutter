@@ -1,10 +1,9 @@
 import 'dart:io';
-import 'package:bloc/bloc.dart';
+
 import 'package:clean_architecture_flutter/features/common_model/login_form.dart';
-import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
 import '../../../../data/models/request/login/login_request.dart';
 import '../../../../di.dart';
 import '../../../../services/login_service.dart';
@@ -97,13 +96,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   ) async {
     final email = Email.dirty(state.email.value);
     final password = Password.dirty(state.password.value);
-    final Image = FileImage.dirty(state.image.value);
+    final image = FileImage.dirty(state.image.value);
     emit(
       state.copyWith(
         email: email,
         password: password,
-        image: Image,
-        isValid: Formz.validate([email, password, Image]),
+        image: image,
+        isValid: Formz.validate([email, password, image]),
       ),
     );
     if (state.isValid) {
