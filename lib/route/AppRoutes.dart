@@ -12,8 +12,7 @@ class AppRoutes {
   static const loginPage = 'loginPage';
   static const signUpPage = 'signupPage';
 
-  static animatedPage(
-      BuildContext context, GoRouterState state, Widget widget) {
+  static animatedPage(BuildContext context, GoRouterState state, Widget widget) {
     return CustomTransitionPage(
       key: state.pageKey,
       child: widget,
@@ -27,10 +26,10 @@ class AppRoutes {
   }
 
   static final GoRouter router = GoRouter(
-    initialLocation: 'signupPage',
+    initialLocation: '/',
     navigatorKey: GlobalKey<NavigatorState>(),
     errorBuilder: (BuildContext context, GoRouterState state) {
-      return SignUpPage();
+      return LoginPage();
     },
     routes: [
       GoRoute(
@@ -61,7 +60,7 @@ class AppRoutes {
       final sharedPreferences = getIt<SharedPreferences>();
       final isAuthenticated = sharedPreferences.containsKey(AppApiUrl.TOKEN);
       if (!isAuthenticated) {
-        return '/signupPage';
+        return '/loginPage';
       } else {
         return null;
       }

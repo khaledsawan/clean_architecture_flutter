@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../constant/url/app_api_url.dart';
-import '../../../../data/models/response/courses/course.dart';
+import '../../data/model/courses/course.dart';
 
 class CourseDesignWidget extends StatelessWidget {
   final List<Course> courses;

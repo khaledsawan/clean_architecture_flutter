@@ -2,16 +2,15 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-
-import '../../../../data/models/request/login/login_request.dart';
 import '../../../../di.dart';
-import '../../../../services/login_service.dart';
-import '../../../common_model/login_form.dart';
+import '../../data/model/request/login/login_request.dart';
+import '../../domain/use_case/login_use_case.dart';
+import '../../../common_forms/login_form.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final loginUseCase = LoginService(getIt());
+  final loginUseCase = LoginUseCase(getIt());
 
   LoginBloc() : super(const LoginState()) {
     on<LoginButtonPressed>(_onSubmitted);
@@ -81,22 +80,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ),
     );
     if (state.isValid) {
-      print('isValid');
-
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        final response = await loginUseCase.login(
-            loginRequest: LoginRequest(
-                email: state.email.value, password: state.password.value));
-        print(response);
+        final response = await loginUseCase.call(LoginRequest(
+            email: state.email.value, password: state.password.value));
         response.fold((l) {
           emit(state.copyWith(status: FormzSubmissionStatus.failure));
-          print('left');
-          print(l);
         }, (r) {
-          emit(state.copyWith(status: FormzSubmissionStatus.success));
-          print('right');
           print(r);
+          emit(state.copyWith(status: FormzSubmissionStatus.success));
         });
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

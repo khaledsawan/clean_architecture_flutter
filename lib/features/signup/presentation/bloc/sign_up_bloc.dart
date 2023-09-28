@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:clean_architecture_flutter/features/common_model/login_form.dart';
+import 'package:clean_architecture_flutter/features/common_forms/login_form.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../../data/models/request/login/login_request.dart';
 import '../../../../di.dart';
-import '../../../../services/login_service.dart';
+import '../../data/model/request/signup/signup_request.dart';
+import '../../domain/use_case/signup_use_case.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  final loginUseCase = LoginService(getIt());
+  final signUpUseCase = SignUpUseCase(getIt());
 
   SignUpBloc() : super(const SignUpState()) {
     on<SignUpButtonPressed>(_onSubmitted);
@@ -106,22 +106,18 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       ),
     );
     if (state.isValid) {
-      print('isValid');
-
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        final response = await loginUseCase.login(
-            loginRequest: LoginRequest(
+        final response = await signUpUseCase.call(
+            SignUpRequest(
                 email: state.email.value, password: state.password.value));
         print(response);
         response.fold((l) {
           emit(state.copyWith(status: FormzSubmissionStatus.failure));
-          print('left');
-          print(l);
+
         }, (r) {
           emit(state.copyWith(status: FormzSubmissionStatus.success));
-          print('right');
-          print(r);
+
         });
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

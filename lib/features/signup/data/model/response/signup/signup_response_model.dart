@@ -1,17 +1,17 @@
-class LoginResponseModel {
+class AuthResponseModel {
   String? token;
   String? role;
 
-  LoginResponseModel({
+  AuthResponseModel({
     this.token,
     this.role,
   });
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(role: json['role'], token: json['token']);
+  factory AuthResponseModel.fromJson(Map<String, dynamic> json) {
+    return AuthResponseModel(role: json['role'], token: json['token']);
   }
 
-  LoginResponseModel fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel.fromJson(json);
+  AuthResponseModel fromJson(Map<String, dynamic> json) {
+    return AuthResponseModel.fromJson(json);
   }
 
   Map<String, dynamic> toJson() {

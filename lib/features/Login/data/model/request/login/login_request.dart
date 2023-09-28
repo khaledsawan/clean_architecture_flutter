@@ -1,4 +1,5 @@
-import '../../../../core/base/base_model.dart';
+
+import '../../../../../../core/base/base_model.dart';
 
 class LoginRequest extends BaseModel<LoginRequest> {
   final String? email;
