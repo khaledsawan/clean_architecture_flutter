@@ -11,8 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.1.1
   connectivity_plus: ^4.0.2
@@ -25,10 +23,11 @@ dependencies:
   go_router: ^11.0.0
   mime: ^1.0.4
   file_picker: ^5.5.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  mockito: ^5.4.2
 
 
 flutter:
