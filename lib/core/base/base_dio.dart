@@ -48,6 +48,14 @@ class TheHttpExecuter {
         {
           return _jsonBodyParser<T>(model, response.data);
         }
+      case HttpStatus.forbidden:
+        return response.data;
+      case HttpStatus.unprocessableEntity:
+        return 'Check request key';
+      case HttpStatus.unauthorized:
+        return "403";
+      case HttpStatus.notFound:
+        return "404";
       default:
         throw response.data;
     }
@@ -71,6 +79,14 @@ class TheHttpExecuter {
         {
           return _jsonBodyParser<T>(model, response.data);
         }
+      case HttpStatus.forbidden:
+        return response.data;
+      case HttpStatus.unprocessableEntity:
+        return 'Check request key';
+      case HttpStatus.unauthorized:
+        return "403";
+      case HttpStatus.notFound:
+        return "404";
       default:
         throw response.data;
     }
@@ -94,6 +110,14 @@ class TheHttpExecuter {
         {
           return _jsonBodyParser<T>(model, response.data);
         }
+      case HttpStatus.forbidden:
+        return response.data;
+      case HttpStatus.unprocessableEntity:
+        return 'Check request key';
+      case HttpStatus.unauthorized:
+        return "403";
+      case HttpStatus.notFound:
+        return "404";
       default:
         throw response.data;
     }
