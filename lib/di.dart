@@ -1,10 +1,10 @@
 import 'package:clean_architecture_flutter/features/Login/domain/repository/login_repository.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'features/Login/domain/use_case/login_use_case.dart';
 import 'features/Login/presentation/bloc/login_bloc.dart';
 import 'features/courses_list/data/reposutory/courses_repository_imp.dart';
 import 'features/courses_list/domain/use_case/Coursese_use_case.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,5 +49,5 @@ Future<void> init() async {
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton(() => sharedPreferences);
-  getIt.registerLazySingleton(() => Connectivity());
+  getIt.registerLazySingleton(() => InternetConnectionChecker());
 }
