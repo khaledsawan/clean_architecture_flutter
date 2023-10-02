@@ -1,4 +1,4 @@
-import 'package:clean_architecture_flutter/route/AppRoutes.dart';
+import 'package:clean_architecture_flutter/route/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';

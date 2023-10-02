@@ -18,7 +18,7 @@ final getIt = GetIt.instance;
 
 Future<void> init() async {
   //busnisess logic
-  getIt.registerLazySingleton<LoginBloc>(() => LoginBloc());
+  getIt.registerLazySingleton<LoginBloc>(() => LoginBloc(getIt()));
 
   // use case
   getIt.registerLazySingleton<CoursesUseCase>(() => CoursesUseCase(getIt()));
