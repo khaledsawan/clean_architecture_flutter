@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:clean_architecture_flutter/features/common_forms/login_form.dart';
+import 'package:clean_architecture_flutter/features/common_forms/common_form.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';

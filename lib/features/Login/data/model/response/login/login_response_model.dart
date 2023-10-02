@@ -23,7 +23,6 @@ class AuthResponseModel {
 }
 
 String convertToJson(String input) {
-  // {"name": public", "nickname": private", "bio": public", "email": private", "gender": public", "birth": public", "address": private", "country": private", "city": private", "job": private", "language": private", "nationality": private"}
   String output = input
       .replaceAll("{", '{"')
       .replaceAll("}", '"}')

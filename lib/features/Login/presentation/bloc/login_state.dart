@@ -1,4 +1,4 @@
-import '../../../common_forms/login_form.dart';
+import '../../../common_forms/common_form.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
