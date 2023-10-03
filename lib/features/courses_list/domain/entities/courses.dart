@@ -1,5 +1,5 @@
-import 'package:clean_architecture_flutter/core/base/base_model.dart';
-import '../../data/model/courses/course.dart';
+import '../../../../core/base/base_model.dart';
+import '../../data/model/course.dart';
 
 class Courses extends BaseModel {
   final bool? success;

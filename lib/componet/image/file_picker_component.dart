@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 
 class FilePickerComponent extends StatefulWidget {
   final ValueChanged<File> onFileSelected;

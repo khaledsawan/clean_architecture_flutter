@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../bloc/courses_list_bloc.dart';
 import '../widgets/course_design_widget.dart';
 
@@ -17,6 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Title')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async => await SharedPreferences.getInstance()
+            .then((value) => value.clear()),
+        child: Icon(Icons.logout),
+      ),
       body: BlocProvider<CoursesListBloc>(
         create: (BuildContext context) => postListBloc,
         child: BlocBuilder(

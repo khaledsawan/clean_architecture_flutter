@@ -5,17 +5,15 @@ import 'package:clean_architecture_flutter/features/Login/domain/repository/logi
 import 'package:clean_architecture_flutter/features/Login/domain/use_case/login_use_case.dart';
 import 'package:clean_architecture_flutter/features/courses_list/domain/repository/courses_repo.dart';
 import 'package:clean_architecture_flutter/features/courses_list/domain/use_case/Coursese_use_case.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:clean_architecture_flutter/features/Login/presentation/bloc/login_bloc.dart';
 import 'package:clean_architecture_flutter/di.dart';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
-
 import '../shared_test.dart';
-
-
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +39,6 @@ void main() {
     SharedPreferencesStorePlatform.instance = store;
     preferences = await SharedPreferences.getInstance();
     getIt = GetIt.instance;
-
   });
 
   tearDown(() {

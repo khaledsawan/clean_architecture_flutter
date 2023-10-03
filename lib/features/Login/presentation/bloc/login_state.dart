@@ -1,6 +1,7 @@
-import '../../../common_forms/common_form.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+
+import '../../../common_forms/common_form.dart';
 
 class LoginState extends Equatable {
   final Email email;

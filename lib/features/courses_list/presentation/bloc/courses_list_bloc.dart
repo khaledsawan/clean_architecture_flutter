@@ -1,9 +1,9 @@
-import 'package:clean_architecture_flutter/core/usecases/usecase.dart';
-import 'package:clean_architecture_flutter/features/courses_list/domain/entities/courses.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/usecases/usecase.dart';
 import '../../../../di.dart';
+import '../../domain/entities/courses.dart';
 import '../../domain/use_case/Coursese_use_case.dart';
 
 part 'courses_list_event.dart';

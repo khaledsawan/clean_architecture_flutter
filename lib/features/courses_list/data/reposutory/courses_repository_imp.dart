@@ -1,5 +1,5 @@
-import 'package:clean_architecture_flutter/constant/url/app_api_url.dart';
-import 'package:clean_architecture_flutter/features/courses_list/domain/repository/courses_repo.dart';
+import '../../../../constant/url/app_api_url.dart';
+import '../../domain/repository/courses_repo.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/base/base_repo.dart';
 import '../../domain/entities/courses.dart';

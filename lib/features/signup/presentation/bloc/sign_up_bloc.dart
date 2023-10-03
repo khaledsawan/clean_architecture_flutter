@@ -1,12 +1,14 @@
 import 'dart:io';
 
-import 'package:clean_architecture_flutter/features/common_forms/common_form.dart';
-import 'package:formz/formz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+
 import '../../../../di.dart';
+import '../../../common_forms/common_form.dart';
 import '../../data/model/request/signup/signup_request.dart';
 import '../../domain/use_case/signup_use_case.dart';
+
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 

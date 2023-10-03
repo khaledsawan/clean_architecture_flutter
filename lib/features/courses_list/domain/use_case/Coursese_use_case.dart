@@ -1,5 +1,5 @@
-import 'package:clean_architecture_flutter/core/usecases/usecase.dart';
-import 'package:clean_architecture_flutter/features/courses_list/domain/entities/courses.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../entities/courses.dart';
 import 'package:dartz/dartz.dart';
 
 import '../repository/courses_repo.dart';

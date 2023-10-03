@@ -49,12 +49,16 @@ void main() {
 
     test('Email without @example.com returns error', () {
       final email = Email.dirty('user@example.org');
+      expect(email.error, null);
+    });
+    test('Email without @example.com returns error', () {
+      final email = Email.dirty('user@example.com');
       expect(email.error, EmailValidationError.noDomain);
     });
 
     test('Valid email returns null', () {
-      final email = Email.dirty('user@example.com');
-      expect(email.error, isNull);
+      final email = Email.dirty('user@gmail.com');
+      expect(email.error, null);
     });
   });
 

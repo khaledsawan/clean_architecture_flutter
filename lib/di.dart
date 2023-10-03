@@ -1,4 +1,4 @@
-import 'package:clean_architecture_flutter/features/Login/domain/repository/login_repository.dart';
+import 'features/Login/domain/repository/login_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'features/Login/domain/use_case/login_use_case.dart';

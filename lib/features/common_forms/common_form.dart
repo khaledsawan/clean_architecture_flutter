@@ -3,7 +3,14 @@ import 'dart:io';
 import 'package:formz/formz.dart';
 import 'package:mime/mime.dart';
 
-enum PasswordValidationError { empty, invalid, short, noUpperCase, noLowerCase, noDigit }
+enum PasswordValidationError {
+  empty,
+  invalid,
+  short,
+  noUpperCase,
+  noLowerCase,
+  noDigit
+}
 
 class Password extends FormzInput<String, PasswordValidationError> {
   const Password.pure() : super.pure('');
@@ -13,11 +20,14 @@ class Password extends FormzInput<String, PasswordValidationError> {
   PasswordValidationError? validator(String value) {
     if (value.isEmpty) return PasswordValidationError.empty;
     if (value.length < 8) return PasswordValidationError.short;
-    
-    if (!value.contains(RegExp(r'[A-Z]'))) return PasswordValidationError.noUpperCase;
-    if (!value.contains(RegExp(r'[a-z]'))) return PasswordValidationError.noLowerCase;
-    if (!value.contains(RegExp(r'[0-9]'))) return PasswordValidationError.noDigit;
-    
+
+    if (!value.contains(RegExp(r'[A-Z]')))
+      return PasswordValidationError.noUpperCase;
+    if (!value.contains(RegExp(r'[a-z]')))
+      return PasswordValidationError.noLowerCase;
+    if (!value.contains(RegExp(r'[0-9]')))
+      return PasswordValidationError.noDigit;
+
     return null;
   }
 }
@@ -35,11 +45,8 @@ class Email extends FormzInput<String, EmailValidationError> {
   @override
   EmailValidationError? validator(String value) {
     if (value.isEmpty) return EmailValidationError.empty;
+    if (value.contains('@example.com')) return EmailValidationError.noDomain;
     if (!_emailRegex.hasMatch(value)) return EmailValidationError.invalid;
-    
-    // Additional domain validation
-    if (!value.contains('@example.com')) return EmailValidationError.noDomain;
-    
     return null;
   }
 }
@@ -54,10 +61,11 @@ class FileImage extends FormzInput<File?, FileImageValidationError> {
   FileImageValidationError? validator(File? value) {
     if (value == null) return FileImageValidationError.empty;
     final mimeType = lookupMimeType(value.path);
-    
+
     if (mimeType != null && mimeType.startsWith('image')) {
       // Additional validation for image size (e.g., 5MB limit)
-      if (value.lengthSync() > 5 * 1024 * 1024) return FileImageValidationError.tooLarge;
+      if (value.lengthSync() > 5 * 1024 * 1024)
+        return FileImageValidationError.tooLarge;
       return null;
     } else {
       return FileImageValidationError.invalid;

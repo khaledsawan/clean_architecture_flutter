@@ -1,9 +1,9 @@
-import 'package:clean_architecture_flutter/route/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../route/app_routes.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
@@ -114,7 +114,7 @@ class EmailInput extends StatelessWidget {
             labelText: 'Email',
             helperText: 'A complete, valid email e.g. joe@gmail.com',
             errorText: state.email.displayError != null
-                ? 'Please ensure the email entered is valid'
+                ? state.email.displayError.toString()
                 : null,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -143,12 +143,12 @@ class PasswordInput extends StatelessWidget {
           decoration: InputDecoration(
             icon: const Icon(Icons.lock),
             helperText:
-                '''Password should be at least 8 characters with at least one letter and number''',
+                'Password should be at least 8 characters with at least one letter and number',
             helperMaxLines: 2,
             labelText: 'Password',
             errorMaxLines: 2,
             errorText: state.password.displayError != null
-                ? '''Password must be at least 8 characters and contain at least one letter and number'''
+                ? state.password.displayError.toString()
                 : null,
           ),
           obscureText: true,

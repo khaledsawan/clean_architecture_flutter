@@ -1,4 +1,4 @@
-import 'package:clean_architecture_flutter/core/base/base_model.dart';
+import '../../../../core/base/base_model.dart';
 import 'course.dart';
 
 class CoursesResponseModel extends BaseModel {
@@ -23,7 +23,13 @@ class CoursesResponseModel extends BaseModel {
             .toList(),
       );
   factory CoursesResponseModel.fromJson(Map<String, dynamic> json) {
-    return CoursesResponseModel.fromJson(json);
+    return CoursesResponseModel(
+      success: json['success'] as bool?,
+      message: json['message'] as String?,
+      courses: (json['courses'] as List<dynamic>?)
+          ?.map((e) => Course.fromMap(e as Map<String, dynamic>))
+          .toList(),
+    );
   }
 
   @override
