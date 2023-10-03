@@ -8,8 +8,8 @@ void main() {
     setUp(() async {
       mockDataConnectionChecker = NetworkInfoImpl(InternetConnectionChecker());
     });
-    // we don't care about internet status just we need to know if there is true or false value
 
+    // we don't care about internet status just we need to know if there is bool
     test('check retrun type', () async {
       var result = await mockDataConnectionChecker.isConnected;
       expect(result, isA<bool>());

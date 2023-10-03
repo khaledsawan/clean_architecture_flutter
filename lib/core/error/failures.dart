@@ -16,3 +16,7 @@ class ServerFailure extends Failure {
 class CacheFailure extends Failure {
   CacheFailure(Object e) : super(e);
 }
+
+class NetworkFailure extends Failure {
+  NetworkFailure(Object e) : super(e);
+}
