@@ -46,6 +46,16 @@ void main() {
     });
   }
 
+   void runTestsOffline(Function body) {
+    group('device is offline', () {
+      setUp(() {
+        when(networkInfo.isConnected).thenAnswer((_) async => false);
+      });
+
+      body();
+    });
+  }
+
   group('getCourses', () {
     final tCourses = Courses(/* Initialize with sample data */);
     runTestsOnline(() {

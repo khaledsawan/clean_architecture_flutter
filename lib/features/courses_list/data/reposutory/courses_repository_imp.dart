@@ -11,7 +11,7 @@ class CoursesRepositoryImp extends MainRepository implements CoursesRepository {
     required super.networkInfo,
   });
   Future<Either<dynamic, Courses>> getCourses() async {
-    final result=await data(
+    final result = await data(
       getData: () => remoteData.get(
         path: AppApiUrl.STUDENT_COURSES_URL,
         headers: headers,
@@ -19,6 +19,6 @@ class CoursesRepositoryImp extends MainRepository implements CoursesRepository {
       ),
       needCash: false,
     );
-  return result.fold((l) => Left(l), (Courses) => Right(Courses));
+    return result.fold((l) => Left(l), (Courses) => Right(Courses));
   }
 }

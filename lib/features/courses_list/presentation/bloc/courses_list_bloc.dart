@@ -10,9 +10,9 @@ part 'courses_list_event.dart';
 part 'courses_list_state.dart';
 
 class CoursesListBloc extends Bloc<CoursesListEvent, CoursesListState> {
-  final coursesService = CoursesUseCase(getIt());
+  final CoursesUseCase coursesService ;
 
-  CoursesListBloc() : super(CoursesListInitial()) {
+  CoursesListBloc(this.coursesService) : super(CoursesListInitial()) {
     on<CoursesListEvent>(_onCoursesFetched);
   }
 
@@ -21,8 +21,7 @@ class CoursesListBloc extends Bloc<CoursesListEvent, CoursesListState> {
     if (event is GetCoursesList) {
       emit(CoursesListLoading());
       final posts = await coursesService.call(NoParams());
-      posts.fold(
-          (l) => emit(CoursesListFail()), (r) => emit(CoursesListLoaded(r)));
+      posts.fold((l) => emit(CoursesListFail()), (r) => emit(CoursesListLoaded(r)));
     }
   }
 }
