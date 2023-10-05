@@ -8,7 +8,6 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../shared_test.dart';
 
 void main() {
@@ -31,7 +30,7 @@ void main() {
   };
 
   setUp(() async {
-      getIt = GetIt.instance;
+    getIt = GetIt.instance;
     store = FakeSharedPreferencesStore(testValues);
     SharedPreferencesStorePlatform.instance = store;
     preferences = await SharedPreferences.getInstance();

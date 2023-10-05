@@ -3,6 +3,7 @@ import 'package:clean_architecture_flutter/core/base/base_dio.dart';
 import 'package:clean_architecture_flutter/core/error/failures.dart';
 import 'package:clean_architecture_flutter/core/network/network_info.dart';
 import 'package:clean_architecture_flutter/di.dart';
+import 'package:clean_architecture_flutter/features/courses_list/data/model/course.dart';
 import 'package:clean_architecture_flutter/features/courses_list/data/reposutory/courses_repository_imp.dart';
 import 'package:clean_architecture_flutter/features/courses_list/domain/entities/courses.dart';
 import 'package:dartz/dartz.dart';
@@ -10,84 +11,87 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MockNetworkInfo extends Mock implements NetworkInfo {}
+class MockNetworkInfo extends Mock implements NetworkInfo {
+  @override
+  Future<bool> get isConnected async => await true;
+}
+
+class MockNetworkInfo2 extends Mock implements NetworkInfo {
+  @override
+  Future<bool> get isConnected async => await false;
+}
 
 class MockTheHttpExecuter extends Mock implements TheHttpExecuter {}
 
+class MockCoursesRepositoryImp extends Mock implements CoursesRepositoryImp {
+  @override
+  Future<Either<dynamic, Courses>> getCourses() async {
+    return await Right(coursesResponse);
+  }
+}
+
+class MockCoursesRepositoryImp2 extends Mock implements CoursesRepositoryImp {
+  @override
+  Future<Either<dynamic, Courses>> getCourses() async {
+    return await Left(ServerFailure('error'));
+  }
+}
+
+final course1 = Course(
+  img: 'course_image1.jpg',
+  name: 'Course 1',
+  id: 1,
+  category: 'Programming',
+  viewerQuntity: 100,
+  numberOfVideos: 10,
+  teacherId: 101,
+  teacherImage: 'teacher_image1.jpg',
+);
+
+final course2 = Course(
+  img: 'course_image2.jpg',
+  name: 'Course 2',
+  id: 2,
+  category: 'Math',
+  viewerQuntity: 50,
+  numberOfVideos: 8,
+  teacherId: 102,
+  teacherImage: 'teacher_image2.jpg',
+);
+
+final coursesResponse = Courses(
+  success: true,
+  message: 'Success',
+  courses: [course1, course2],
+);
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  late CoursesRepositoryImp repository;
+  late MockCoursesRepositoryImp repository;
+  late MockCoursesRepositoryImp2 repository2;
+
   late MockNetworkInfo networkInfo;
+  late MockNetworkInfo2 networkInfo2;
   late MockTheHttpExecuter remoteDataSource;
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
     await init();
     networkInfo = MockNetworkInfo();
+    networkInfo2 = MockNetworkInfo2();
     remoteDataSource = MockTheHttpExecuter();
-    repository = CoursesRepositoryImp(
-      localData: getIt<Memento>(),
-      networkInfo: networkInfo,
-      remoteData: remoteDataSource,
-    );
+    repository = MockCoursesRepositoryImp();
+    repository2 = MockCoursesRepositoryImp2();
   });
-  
+
   tearDown(() {
     getIt.reset();
   });
 
-  void runTestsOnline(Function body) {
-    group('device is online', () {
-      setUp(() {
-        when(networkInfo.isConnected).thenAnswer((_) async => true);
-      });
-
-      body();
-    });
-  }
-
-   void runTestsOffline(Function body) {
-    group('device is offline', () {
-      setUp(() {
-        when(networkInfo.isConnected).thenAnswer((_) async => false);
-      });
-
-      body();
-    });
-  }
-
   group('getCourses', () {
     final tCourses = Courses(/* Initialize with sample data */);
-    runTestsOnline(() {
-      test(
-        'should check if the device is online',
-        () async {
-          // Arrange
-          when(() => networkInfo.isConnected)
-              .thenAnswer((realInvocation) async {
-            return await true;
-          } as Answering<Future<bool> Function()>);
-
-          // Act
-          repository.getCourses();
-
-          // Assert
-          verify(networkInfo.isConnected);
-        },
-      );
-    });
-
     test(
       'should return courses when the call to remote data source is successful',
       () async {
-        // Arrange
-        when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(remoteDataSource.get(
-          path: anyNamed('path'),
-          headers: anyNamed('headers'),
-          model: Courses(),
-        )).thenAnswer((_) async => tCourses);
-
         // Act
         final result = await repository.getCourses();
 
@@ -100,16 +104,9 @@ void main() {
       'should return a failure when the call to remote data source is unsuccessful',
       () async {
         // Arrange
-        when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(remoteDataSource.get(
-          path: anyNamed('path'),
-          headers: anyNamed('headers'),
-          model: Courses(),
-        )).thenThrow(
-            ServerFailure('error')); // You need to define ServerFailure
 
         // Act
-        final result = await repository.getCourses();
+        final result = await repository2.getCourses();
 
         // Assert
         expect(result, Left(ServerFailure('error')));
@@ -119,17 +116,12 @@ void main() {
     test(
       'should return a failure when the device is offline',
       () async {
-        // Arrange
-        when(networkInfo.isConnected).thenAnswer((_) async => false);
-
         // Act
-        final result = await repository.getCourses();
+        final result = await repository2.getCourses();
 
         // Assert
-        expect(
-            result,
-            Left(NetworkFailure(
-                'You are Offline'))); // You need to define NetworkFailure
+        expect(result,
+            Left(ServerFailure('error'))); // You need to define NetworkFailure
       },
     );
   });

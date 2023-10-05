@@ -29,7 +29,7 @@ class VideoCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.network(AppApiUrl.BASE_URL + course.img!),
+          //   Image.network(AppApiUrl.BASE_URL + course.img!),
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
@@ -41,7 +41,7 @@ class VideoCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  'Category: ${course.name}',
+                  'Category: ${course.category}',
                   style: TextStyle(fontSize: 16.0),
                 ),
                 Text(
