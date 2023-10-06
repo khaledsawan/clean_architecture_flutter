@@ -17,10 +17,8 @@ void main() {
 
   testWidgets('Test navigation to different routes',
       (WidgetTester tester) async {
-    await AppDependencies().initialize();
+   
     final mockSharedPreferences = MockSharedPreferences();
-    final moclAppDependencies = MockAppDependencies();
-    await moclAppDependencies.initialize();
     // Mock that the user is authenticated
     when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN))
         .thenReturn(await true);
@@ -51,7 +49,7 @@ void main() {
 
   testWidgets('Test redirect when not authenticated',
       (WidgetTester tester) async {
-    await AppDependencies().initialize();
+    
     final mockSharedPreferences = MockSharedPreferences();
     // Mock that the user is not authenticated
     when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN)).thenReturn(false);

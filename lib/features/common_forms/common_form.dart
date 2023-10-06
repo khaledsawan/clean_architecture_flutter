@@ -21,10 +21,10 @@ class Password extends FormzInput<String, PasswordValidationError> {
     if (value.isEmpty) return PasswordValidationError.empty;
     if (value.length < 8) return PasswordValidationError.short;
 
-    if (!value.contains(RegExp(r'[A-Z]')))
-      return PasswordValidationError.noUpperCase;
-    if (!value.contains(RegExp(r'[a-z]')))
-      return PasswordValidationError.noLowerCase;
+    // if (!value.contains(RegExp(r'[A-Z]')))
+    //   return PasswordValidationError.noUpperCase;
+    // if (!value.contains(RegExp(r'[a-z]')))
+    //   return PasswordValidationError.noLowerCase;
     if (!value.contains(RegExp(r'[0-9]')))
       return PasswordValidationError.noDigit;
 

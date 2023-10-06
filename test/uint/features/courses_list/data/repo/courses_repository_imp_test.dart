@@ -21,8 +21,6 @@ class MockNetworkInfo2 extends Mock implements NetworkInfo {
   Future<bool> get isConnected async => await false;
 }
 
-class MockTheHttpExecuter extends Mock implements TheHttpExecuter {}
-
 class MockCoursesRepositoryImp extends Mock implements CoursesRepositoryImp {
   @override
   Future<Either<dynamic, Courses>> getCourses() async {
@@ -71,19 +69,14 @@ void main() {
 
   late MockNetworkInfo networkInfo;
   late MockNetworkInfo2 networkInfo2;
-  late MockTheHttpExecuter remoteDataSource;
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
-    await AppDependencies().initialize();
     networkInfo = MockNetworkInfo();
     networkInfo2 = MockNetworkInfo2();
-    remoteDataSource = MockTheHttpExecuter();
     repository = MockCoursesRepositoryImp();
     repository2 = MockCoursesRepositoryImp2();
   });
-
- 
 
   group('getCourses', () {
     final tCourses = Courses(/* Initialize with sample data */);

@@ -38,7 +38,7 @@ void main() {
     message: 'Success',
     courses: [course1, course2],
   );
-setUp(() async =>  await AppDependencies().initialize());
+setUp(() async =>  await MockAppDependencies().initialize());
   testWidgets('HomeScreen should render correctly',
       (WidgetTester tester) async {
     final mockSharedPreferences = MockSharedPreferences();
