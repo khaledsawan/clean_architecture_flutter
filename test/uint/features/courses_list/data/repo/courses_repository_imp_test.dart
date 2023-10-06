@@ -1,8 +1,5 @@
-import 'package:clean_architecture_flutter/core/base/base_cache.dart';
-import 'package:clean_architecture_flutter/core/base/base_dio.dart';
 import 'package:clean_architecture_flutter/core/error/failures.dart';
 import 'package:clean_architecture_flutter/core/network/network_info.dart';
-import 'package:clean_architecture_flutter/di.dart';
 import 'package:clean_architecture_flutter/features/courses_list/data/model/course.dart';
 import 'package:clean_architecture_flutter/features/courses_list/data/reposutory/courses_repository_imp.dart';
 import 'package:clean_architecture_flutter/features/courses_list/domain/entities/courses.dart';
@@ -67,13 +64,9 @@ void main() {
   late MockCoursesRepositoryImp repository;
   late MockCoursesRepositoryImp2 repository2;
 
-  late MockNetworkInfo networkInfo;
-  late MockNetworkInfo2 networkInfo2;
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
-    networkInfo = MockNetworkInfo();
-    networkInfo2 = MockNetworkInfo2();
     repository = MockCoursesRepositoryImp();
     repository2 = MockCoursesRepositoryImp2();
   });

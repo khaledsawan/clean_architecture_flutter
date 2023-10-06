@@ -220,7 +220,6 @@ class MockAppDependencies extends _i1.Mock implements _i5.AppDependencies {
     _i1.throwOnMissingStub(this);
   }
 
-  @override
   _i2.GetIt get getIt => (super.noSuchMethod(
         Invocation.getter(#getIt),
         returnValue: _FakeGetIt_0(

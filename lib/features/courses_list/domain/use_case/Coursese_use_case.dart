@@ -1,7 +1,7 @@
-import '../../../../core/usecases/usecase.dart';
-import '../entities/courses.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/usecases/usecase.dart';
+import '../entities/courses.dart';
 import '../repository/courses_repo.dart';
 
 class CoursesUseCase extends UseCase<Courses, NoParams> {

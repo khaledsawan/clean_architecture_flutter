@@ -1,4 +1,4 @@
-import 'package:clean_architecture_flutter/core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 
 import '../../../../constant/url/app_api_url.dart';
 import '../../domain/repository/courses_repo.dart';
