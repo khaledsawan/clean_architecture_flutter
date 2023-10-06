@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,7 +13,6 @@ class AppRoutes {
   static const home = 'home';
   static const loginPage = 'loginPage';
   static const signUpPage = 'signupPage';
-
   static animatedPage(
       BuildContext context, GoRouterState state, Widget widget) {
     return CustomTransitionPage(
@@ -58,10 +58,7 @@ class AppRoutes {
       ),
     ],
     redirect: (BuildContext context, GoRouterState state) {
-      // TODO: Implement error handling "need to change"
-      final SharedPreferences sharedPreferences = getIt();
-      final isAuthenticated = sharedPreferences.containsKey(AppApiUrl.TOKEN);
-      print("isAuthenticated:" + isAuthenticated.toString());
+      final isAuthenticated = getIt<SharedPreferences>().containsKey(AppApiUrl.TOKEN);
       if (!isAuthenticated) {
         return '/loginPage';
       } else {

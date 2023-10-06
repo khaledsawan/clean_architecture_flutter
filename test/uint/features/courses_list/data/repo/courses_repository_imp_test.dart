@@ -75,7 +75,7 @@ void main() {
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
-    await init();
+    await AppDependencies().initialize();
     networkInfo = MockNetworkInfo();
     networkInfo2 = MockNetworkInfo2();
     remoteDataSource = MockTheHttpExecuter();
@@ -83,9 +83,7 @@ void main() {
     repository2 = MockCoursesRepositoryImp2();
   });
 
-  tearDown(() {
-    getIt.reset();
-  });
+ 
 
   group('getCourses', () {
     final tCourses = Courses(/* Initialize with sample data */);

@@ -11,19 +11,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app_route_test.mocks.dart';
 
 @GenerateMocks([SharedPreferences])
+@GenerateMocks([AppDependencies])
 void main() {
-  //TestWidgetsFlutterBinding.ensureInitialized();
-//  late MockSharedPreferences mockSharedPreferences;
-
-  setUp(() async {
-    //   mockSharedPreferences = MockSharedPreferences();
-    //  mockSharedPreferences.setString(AppApiUrl.TOKEN, 'token');
-  });
+  setUp(() => MockAppDependencies().initialize());
 
   testWidgets('Test navigation to different routes',
       (WidgetTester tester) async {
-    await init();
+    await AppDependencies().initialize();
     final mockSharedPreferences = MockSharedPreferences();
+    final moclAppDependencies = MockAppDependencies();
+    await moclAppDependencies.initialize();
     // Mock that the user is authenticated
     when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN))
         .thenReturn(await true);
@@ -54,7 +51,7 @@ void main() {
 
   testWidgets('Test redirect when not authenticated',
       (WidgetTester tester) async {
-    await init();
+    await AppDependencies().initialize();
     final mockSharedPreferences = MockSharedPreferences();
     // Mock that the user is not authenticated
     when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN)).thenReturn(false);

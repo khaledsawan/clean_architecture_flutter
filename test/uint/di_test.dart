@@ -47,7 +47,7 @@ void main() {
   });
 
   test('Test dependency registration', () async {
-    await init();
+    await AppDependencies().initialize();
     // Verify that the dependencies are registered correctly
     expect(getIt<LoginBloc>(), isNotNull);
     expect(getIt<CoursesUseCase>(), isNotNull);

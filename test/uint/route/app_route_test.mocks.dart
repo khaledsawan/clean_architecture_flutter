@@ -3,10 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
+import 'package:clean_architecture_flutter/di.dart' as _i5;
+import 'package:get_it/get_it.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shared_preferences/shared_preferences.dart' as _i2;
+import 'package:shared_preferences/shared_preferences.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -19,10 +21,20 @@ import 'package:shared_preferences/shared_preferences.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeGetIt_0 extends _i1.SmartFake implements _i2.GetIt {
+  _FakeGetIt_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i3.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -83,7 +95,7 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
       )) as List<String>?);
 
   @override
-  _i3.Future<bool> setBool(
+  _i4.Future<bool> setBool(
     String? key,
     bool? value,
   ) =>
@@ -95,11 +107,11 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> setInt(
+  _i4.Future<bool> setInt(
     String? key,
     int? value,
   ) =>
@@ -111,11 +123,11 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> setDouble(
+  _i4.Future<bool> setDouble(
     String? key,
     double? value,
   ) =>
@@ -127,11 +139,11 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> setString(
+  _i4.Future<bool> setString(
     String? key,
     String? value,
   ) =>
@@ -143,11 +155,11 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> setStringList(
+  _i4.Future<bool> setStringList(
     String? key,
     List<String>? value,
   ) =>
@@ -159,43 +171,71 @@ class MockSharedPreferences extends _i1.Mock implements _i2.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> remove(String? key) => (super.noSuchMethod(
+  _i4.Future<bool> remove(String? key) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [key],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> commit() => (super.noSuchMethod(
+  _i4.Future<bool> commit() => (super.noSuchMethod(
         Invocation.method(
           #commit,
           [],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<bool> clear() => (super.noSuchMethod(
+  _i4.Future<bool> clear() => (super.noSuchMethod(
         Invocation.method(
           #clear,
           [],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<void> reload() => (super.noSuchMethod(
+  _i4.Future<void> reload() => (super.noSuchMethod(
         Invocation.method(
           #reload,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [AppDependencies].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppDependencies extends _i1.Mock implements _i5.AppDependencies {
+  MockAppDependencies() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.GetIt get getIt => (super.noSuchMethod(
+        Invocation.getter(#getIt),
+        returnValue: _FakeGetIt_0(
+          this,
+          Invocation.getter(#getIt),
+        ),
+      ) as _i2.GetIt);
+
+  @override
+  _i4.Future<void> initialize() => (super.noSuchMethod(
+        Invocation.method(
+          #initialize,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

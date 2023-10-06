@@ -7,19 +7,8 @@ import 'package:clean_architecture_flutter/features/courses_list/presentation/wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mockito/mockito.dart';
-
 import '../../../../route/app_route_test.mocks.dart';
-
-// Mock SharedPreferences
-// class MockSharedPreferences extends Mock implements SharedPreferences {
-//   @override
-//   Future<bool> clear() async {
-//     return await true;
-//   }
-// }
 
 void main() {
   final course1 = Course(
@@ -49,18 +38,10 @@ void main() {
     message: 'Success',
     courses: [course1, course2],
   );
-  SharedPreferences.setMockInitialValues({});
-  // Set up the mock SharedPreferences before running the tests
-  MockSharedPreferences mockSharedPreferences = MockSharedPreferences();
-  //when(mockSharedPreferences.clear()).thenAnswer((_) => Future.value(true));
-  //SharedPreferences.setMockInitialValues({});
-  final getIt = GetIt.instance;
-  // Set up the getIlartt() dependency injector
-
-  setUpAll(() async => await init());
-
+setUp(() async =>  await AppDependencies().initialize());
   testWidgets('HomeScreen should render correctly',
       (WidgetTester tester) async {
+    final mockSharedPreferences = MockSharedPreferences();
     // Build the widget and trigger a frame
     await tester.pumpWidget(MaterialApp(
       home: HomeScreen(),
@@ -83,11 +64,11 @@ void main() {
       'HomeScreen should render CourseDesignWidget when CoursesListLoaded',
       (WidgetTester tester) async {
     // Create a mock CoursesListBloc
-    final coursesListBloc = CoursesListBloc(getIt());
+    CoursesListBloc coursesListBloc = getIt<CoursesListBloc>();
 
     // Set up the initial state to be CoursesListLoaded
-    //  when(coursesListBloc.stream).thenAnswer(
-    //   (_) => Stream.fromIterable([CoursesListLoaded(coursesResponse)]));
+    when(coursesListBloc.stream).thenAnswer(
+        (_) => Stream.fromIterable([CoursesListLoaded(coursesResponse)]));
     // Build the widget and trigger a frame
     await tester.pumpWidget(MaterialApp(
       home: BlocProvider<CoursesListBloc>(
