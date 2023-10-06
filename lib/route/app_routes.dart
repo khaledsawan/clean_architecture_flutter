@@ -59,7 +59,7 @@ class AppRoutes {
     ],
     redirect: (BuildContext context, GoRouterState state) {
       // TODO: Implement error handling "need to change"
-      final sharedPreferences = getIt<SharedPreferences>();
+      final SharedPreferences sharedPreferences = getIt();
       final isAuthenticated = sharedPreferences.containsKey(AppApiUrl.TOKEN);
       print("isAuthenticated:" + isAuthenticated.toString());
       if (!isAuthenticated) {

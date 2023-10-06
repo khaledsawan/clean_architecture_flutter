@@ -1,51 +1,32 @@
 import 'package:clean_architecture_flutter/app.dart';
 import 'package:clean_architecture_flutter/constant/url/app_api_url.dart';
+import 'package:clean_architecture_flutter/di.dart';
 import 'package:clean_architecture_flutter/features/Login/presentation/page/LoginPage.dart';
 import 'package:clean_architecture_flutter/features/courses_list/presentation/pages/home_screen.dart';
 import 'package:clean_architecture_flutter/features/signup/presentation/page/sign_up_page.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../shared_test.dart';
+import 'app_route_test.mocks.dart';
 
+@GenerateMocks([SharedPreferences])
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  late FakeSharedPreferencesStore store;
-  late SharedPreferences preferences;
-  late GetIt getIt;
-  const String testString = 'hello world';
-  const bool testBool = true;
-  const int testInt = 42;
-  const double testDouble = 3.14159;
-  const List<String> testList = <String>['foo', 'bar'];
-  const Map<String, Object> testValues = <String, Object>{
-    'flutter.String': testString,
-    'flutter.bool': testBool,
-    'flutter.int': testInt,
-    'flutter.double': testDouble,
-    'flutter.List': testList,
-  };
+  //TestWidgetsFlutterBinding.ensureInitialized();
+//  late MockSharedPreferences mockSharedPreferences;
 
   setUp(() async {
-    getIt = GetIt.instance;
-    store = FakeSharedPreferencesStore(testValues);
-    SharedPreferencesStorePlatform.instance = store;
-    preferences = await SharedPreferences.getInstance();
-    await preferences.setString(AppApiUrl.TOKEN, 'value');
-    store.log.clear();
-  });
-  tearDown(() async {
-    await preferences.clear();
-    await getIt.reset();
+    //   mockSharedPreferences = MockSharedPreferences();
+    //  mockSharedPreferences.setString(AppApiUrl.TOKEN, 'token');
   });
 
   testWidgets('Test navigation to different routes',
       (WidgetTester tester) async {
+    await init();
+    final mockSharedPreferences = MockSharedPreferences();
     // Mock that the user is authenticated
-    //when(preferences.containsKey(AppApiUrl.TOKEN)).thenReturn(true);
+    when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN))
+        .thenReturn(await true);
 
     // Build the main app widget with AppRoutes.router as the router
     await tester.pumpWidget(App());
@@ -73,8 +54,10 @@ void main() {
 
   testWidgets('Test redirect when not authenticated',
       (WidgetTester tester) async {
+    await init();
+    final mockSharedPreferences = MockSharedPreferences();
     // Mock that the user is not authenticated
-    when(preferences.containsKey(AppApiUrl.TOKEN)).thenReturn(false);
+    when(mockSharedPreferences.containsKey(AppApiUrl.TOKEN)).thenReturn(false);
 
     // Build the main app widget with AppRoutes.router as the router
     await tester.pumpWidget(App());

@@ -11,13 +11,15 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../route/app_route_test.mocks.dart';
+
 // Mock SharedPreferences
-class MockSharedPreferences extends Mock implements SharedPreferences {
-  @override
-  Future<bool> clear() async {
-    return await true;
-  }
-}
+// class MockSharedPreferences extends Mock implements SharedPreferences {
+//   @override
+//   Future<bool> clear() async {
+//     return await true;
+//   }
+// }
 
 void main() {
   final course1 = Course(
