@@ -16,7 +16,6 @@ class SignUpRepositoryImp extends MainRepository implements SignUpRepository {
   @override
   Future<Either<dynamic, AuthResponseModel>> signUpUser(
       SignUpRequest signRequest) async {
-    print(signRequest.email);
     final result = await data(
       getData: () => remoteData.post(
         body: signRequest.toJson(),
@@ -32,7 +31,6 @@ class SignUpRepositoryImp extends MainRepository implements SignUpRepository {
     );
     return result.fold(
       (failure) {
-        print(failure);
         return Left(failure);
       },
       (authResponse) => Right(authResponse),

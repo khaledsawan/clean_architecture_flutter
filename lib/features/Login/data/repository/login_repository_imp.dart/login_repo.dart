@@ -32,7 +32,6 @@ class LoginRepositoryImp extends MainRepository implements LoginRepository {
     );
     return result.fold(
       (failure) {
-        print(failure);
         return Left(failure);
       },
       (authResponse) => Right(authResponse),
