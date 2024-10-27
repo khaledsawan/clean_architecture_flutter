@@ -9,8 +9,8 @@ import 'package:clean_architecture_flutter/features/Login/presentation/bloc/logi
 import 'package:clean_architecture_flutter/di.dart';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import '../shared_test.dart';
@@ -58,7 +58,7 @@ void main() {
     expect(getIt<TheHttpExecuter>(), isNotNull);
     expect(getIt<Memento>(), isNotNull);
     expect(getIt<SharedPreferences>(), equals(preferences));
-    expect(getIt<InternetConnectionChecker>(),
-        equals(InternetConnectionChecker()));
+    expect(getIt<InternetConnection>(),
+        equals(InternetConnection()));
   });
 }
