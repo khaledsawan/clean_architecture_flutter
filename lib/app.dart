@@ -1,4 +1,7 @@
+import 'di.dart';
+import 'features/message/presentation/cubit/pushnotification_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'route/app_routes.dart';
 
@@ -9,8 +12,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRoutes.router,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=> getIt<PushNotificationBloc>()),
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRoutes.router,
+      ),
     );
   }
 }

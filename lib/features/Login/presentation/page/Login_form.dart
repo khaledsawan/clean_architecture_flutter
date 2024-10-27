@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../di.dart';
 import '../../../../route/app_routes.dart';
+import '../../../message/data/service/firebase_messageing_service.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
@@ -70,7 +72,11 @@ class _LoginFormState extends State<LoginForm> {
                           PasswordInput(
                             focusNode: _passwordFocusNode,
                           ),
-                          const SubmitButton()
+                        GestureDetector(
+                            onTap: (){
+                              print(getIt<FirebaseMessageService>().Token);
+                            },
+                            child: const SubmitButton())
                         ],
                       ),
                     ),

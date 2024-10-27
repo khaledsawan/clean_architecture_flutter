@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDIqSQSKciLJcPuKkE7qwyeGRyauBqdu0g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>801698897244</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.cleanArchitectureFlutter</string>
+	<key>PROJECT_ID</key>
+	<string>clean-architecture-212e6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>clean-architecture-212e6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:801698897244:ios:3e0315007579446d823599</string>
+</dict>
+</plist>

@@ -1,10 +1,10 @@
-import '../../../../core/error/failures.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../constant/url/app_api_url.dart';
-import '../../domain/repository/courses_repo.dart';
-import 'package:dartz/dartz.dart';
 import '../../../../core/base/base_repo.dart';
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/courses.dart';
+import '../../domain/repository/courses_repo.dart';
 
 class CoursesRepositoryImp extends MainRepository implements CoursesRepository {
   CoursesRepositoryImp({
